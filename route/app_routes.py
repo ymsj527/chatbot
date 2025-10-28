@@ -34,8 +34,8 @@ def add_urls(URL:str):
     #引入向量数据库
     qdrant = Qdrant.from_documents(
         docments,
-        ChatSparkLLM(app_id="34aa2cd9",api_secret="ZTNhYzkyYWM0Y2UxN2Q0NGQxNDAzNTdk",api_key="72963ae6510313ad117a9edb1996105f"),
-        path="D:/2.study/Ai-Agent/Chapter8/local_qdrant",
+        ChatSparkLLM(app_id="",api_secret="",api_key=""),
+        path="../local_qdrant",
         collection_name="local_documents",
     )
     print("向量数据库创建完成")
