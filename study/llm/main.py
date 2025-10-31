@@ -1,24 +1,42 @@
-from langchain_community.chat_models import ChatSparkLLM
-from langchain_classic.prompts import PromptTemplate
-from dotenv import load_dotenv
-import os
+from chatbot_ai import ai
+from prompt import chatbot_prompt as p
+from common import base,func
 
-#  加载环境
-load_dotenv()
+# token追踪
+from langchain_classic.callbacks import get_openai_callback
 
-# os.getenv()
 
-sp_llm = ChatSparkLLM(
-    spark_api_url="https://spark-api-open.xf-yun.com/v1/chat/completions",
-    spark_app_id="34aa2cd9",
-    spark_api_key="72963ae6510313ad117a9edb1996105f",
-    spark_api_secret="ZTNhYzkyYWM0Y2UxN2Q0NGQxNDAzNTdk",
-    request_timeout=30,
-    streaming=True,
-)
+llm = ai.llm
 
-prompt = PromptTemplate.from_template("你是一个起名大师,请模仿示例起3个{county}名字,比如男孩经常被叫做{boy},女孩经常被叫做{girl}")
-message = prompt.format(county="中国特色的",boy="狗蛋",girl="翠花")
+#起名大师
+# a = llm.generate(prompts=[p.get_prompt_name_msg]).generations
+# txt = a[0][0].text
 
-sp_llm.generate()
+
+# 格式化输出
+# base.CommaSeparatedListOutputParser().parse(text=txt)
+
+# 程序翻译
+# a = base.CustPrompt(input_variables=["function_name"])
+# pm = a.format(function_name=func.hello_world)
+# pm_msg = llm.invoke(pm)
+# print(pm_msg)
+
+# llm.invoke(p.get_f_sting_template_prompt)
+# llm.invoke(p.get_jinja2_template_prompt_msg)
+
+# 流式
+# llm.stream()
+
+#  追踪token
+# with get_openai_callback() as cb:
+#     result = llm.invoke("讲一个笑话")
+#     print(result)
+#     print(cb)
+
+
+
+
+
+
 

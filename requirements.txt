@@ -6,3 +6,4 @@ langchain
 redis
 qdrant_client
 uvicorn
+spark_ai_python
